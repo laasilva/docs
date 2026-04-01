@@ -5,8 +5,7 @@ A collection of personal documentation and guides.
 ## Table of Contents
 
 - [Azure Deployment](#azure-deployment)
-- [Workspaces
-](#workspaces)
+- [Workspaces](#workspaces)
 
 ---
 
@@ -237,7 +236,7 @@ kubectl rollout restart deployment <deploymentName>
 
 Use figlet and toilet to have a custom start on the terminal so it looks ✨ pretty ✨
 
-![Figlet and Toilet example](../assets/figlet_toilet_example.png)
+![Figlet and Toilet example](docs/assets/figlet_toilet_example.png)
 
 ### Installs
 
@@ -380,5 +379,5 @@ Work maven settings should be the same, with company standards.
 
 1. Override maven settings on IntelliJ IDEA
 
-![IntelliJ Maven settings](../assets/intellij_maven.png)
+![IntelliJ Maven settings](docs/assets/intellij_maven.png)
 ---
