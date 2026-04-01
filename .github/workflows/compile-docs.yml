@@ -1,0 +1,63 @@
+name: Compile Docs into README
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**/*.md'
+
+permissions:
+  contents: write
+
+jobs:
+  compile-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile docs into README.md
+        run: |
+          cat > README.md << 'HEADER'
+          # Docs
+
+          A collection of personal documentation and guides.
+
+          ## Table of Contents
+
+          HEADER
+
+          # Collect all md files sorted alphabetically
+          files=$(find docs -name '*.md' | sort)
+
+          # Generate Table of Contents
+          for file in $files; do
+            # Extract the first H1 heading as the title
+            title=$(grep -m 1 '^# ' "$file" | sed 's/^# //')
+            if [ -z "$title" ]; then
+              # Fallback to filename if no H1 found
+              title=$(basename "$file" .md)
+            fi
+            # Create anchor from title (lowercase, spaces to hyphens, remove special chars)
+            anchor=$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/[^a-z0-9-]//g')
+            echo "- [$title](#$anchor)" >> README.md
+          done
+
+          echo "" >> README.md
+          echo "---" >> README.md
+
+          # Append each doc's content
+          for file in $files; do
+            echo "" >> README.md
+            cat "$file" >> README.md
+            echo "" >> README.md
+            echo "---" >> README.md
+          done
+
+      - name: Commit updated README
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet README.md && exit 0
+          git add README.md
+          git commit -m "docs: auto-compile README from docs/"
+          git push
