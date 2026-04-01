@@ -4,7 +4,7 @@
 
 Use figlet and toilet to have a custom start on the terminal so it looks ✨ pretty ✨
 
-./assets/figlet_toilet_example.png
+![Figlet and Toilet example](../assets/figlet_toilet_example.png)
 
 ### Installs
 
@@ -147,4 +147,4 @@ Work maven settings should be the same, with company standards.
 
 1. Override maven settings on IntelliJ IDEA
 
-./assets/intellij_maven.png
+![IntelliJ Maven settings](../assets/intellij_maven.png)
