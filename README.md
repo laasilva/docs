@@ -5,7 +5,8 @@ A collection of personal documentation and guides.
 ## Table of Contents
 
 - [Azure Deployment](#azure-deployment)
-- [Workspaces](#workspaces)
+- [Workspaces
+](#workspaces)
 
 ---
 

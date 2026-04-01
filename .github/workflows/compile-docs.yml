@@ -47,10 +47,11 @@ jobs:
           echo "" >> README.md
           echo "---" >> README.md
 
-          # Append each doc's content
+          # Append each doc's content, rewriting image paths to be relative to repo root
           for file in $files; do
             echo "" >> README.md
-            cat "$file" >> README.md
+            dir=$(dirname "$file")
+            sed "s|!\(\[[^]]*\]\)(\([^)]*\))|!\1($dir/\2)|g" "$file" >> README.md
             echo "" >> README.md
             echo "---" >> README.md
           done
